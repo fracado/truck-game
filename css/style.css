@@ -1,0 +1,34 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+canvas {
+    background-color: black;
+    width: 100% !important;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+}
+
+.hud {
+    display: block;
+    margin: 5px auto;
+    width: 100%;
+    text-align: center;
+}
+
+.hud a {
+    font-size: 20px;
+    color: lavender;
+    font-family: Avenir Next LT Pro, Trebuchet MS, Tahoma, sans-serif;
+}
+
+.hub img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

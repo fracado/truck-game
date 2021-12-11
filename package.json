@@ -1,0 +1,21 @@
+{
+  "name": "truck-game",
+  "version": "1.0.0",
+  "description": "truck game",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "truck-game"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kontra": "^7.3.1"
+  }
+}
