@@ -4,18 +4,34 @@ kontra.initKeys();
 kontra.setImagePath('assets/images');
 kontra.setAudioPath('assets/sounds');
 
-kontra.load('truck.png','background.png','roadsign.png','rock.png').then(function() {
+kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png').then(function() {
   const background = kontra.Sprite({
     x: 0,
     y: 0,
     image: kontra.imageAssets.background
   });
 
-  const truck = kontra.Sprite({
-    x: 120,
-    y: 250,
-    image: kontra.imageAssets.truck
-  });
+    let spriteSheet = kontra.SpriteSheet({
+      frameWidth: 126,
+      frameHeight: 66,
+      image: kontra.imageAssets.truckspritesheet,
+      animations: {
+        drive: {
+          frames: [0, 1],
+          frameRate: 8
+        },
+        crash: {
+          frames: 2
+        }
+      }
+    });
+
+    let truck = kontra.Sprite({
+      x: 120,
+      y: 250,
+      animation: 'drive',
+      animations: spriteSheet.animations
+    });
 
   // global mechanic variables
   y_origin = truck.y;
@@ -26,6 +42,7 @@ kontra.load('truck.png','background.png','roadsign.png','rock.png').then(functio
         update: function() {
           if (!isRunning) {
             isRunning = true;
+            truck.playAnimation('drive');
             talk(dialogue_intro1);
           }
           else if (isOver) {
@@ -75,6 +92,7 @@ kontra.load('truck.png','background.png','roadsign.png','rock.png').then(functio
             obstacle.update();
 
             if (kontra.collides(obstacle, truck)) {
+              truck.playAnimation('crash');
               screen_write(2);
             }
             else if (obstacle.x <= obstacle.width) {
