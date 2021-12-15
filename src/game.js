@@ -4,7 +4,29 @@ kontra.initKeys();
 kontra.setImagePath('assets/images');
 kontra.setAudioPath('assets/sounds');
 
-kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png').then(function() {
+/*
+const animateBg = function (img) {
+  let cvs = document.getElementById('bg');
+  let ctx = cvs.getContext('2d');
+  let offsetLeft = 0;
+
+  setInterval(function () {
+    offsetLeft += 1;
+    if (offsetLeft > width) {
+      offsetLeft = 0;
+    }
+
+    ctx.drawImage(img, -offsetLeft, 0);
+    ctx.drawImage(img, img.width-offsetLeft, 0);
+
+  }, 1000/30);
+};
+*/
+
+kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png', 'music.ogg', 'jump.wav', 'crash.ogg').then(function() {
+  kontra.audioAssets.music.loop = true;
+  kontra.audioAssets.music.volume = 0.5;
+
   const background = kontra.Sprite({
     x: 0,
     y: 0,
@@ -53,6 +75,7 @@ kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png').t
           time++;
 
           if (kontra.keyPressed('up')) { // JUMP
+            kontra.audioAssets.jump.play();
             jump(truck);
           }
           else {
@@ -92,6 +115,7 @@ kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png').t
             obstacle.update();
 
             if (kontra.collides(obstacle, truck)) {
+              kontra.audioAssets.crash.play();
               truck.playAnimation('crash');
               screen_write(2);
             }
@@ -107,6 +131,8 @@ kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png').t
 
         render: function() {
           background.render();
+          // animateBg(kontra.imageAssets.background);
+          kontra.audioAssets.music.play();
           truck.render();
 
           if (obstacles.length > 0) {
