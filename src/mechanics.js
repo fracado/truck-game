@@ -23,11 +23,11 @@ function spawn_obstacle() {
     switch (choice) {
             case 1:
                 image = kontra.imageAssets.rock;
-                offset = 16;
+                offset = 0;
                 break;
             case 2:
                 image = kontra.imageAssets.roadsign;
-                offset = 30;
+                offset = 10;
                 break;
             default:
                 break;

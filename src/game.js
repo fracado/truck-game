@@ -57,8 +57,8 @@ kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png', '
 
   // global mechanic variables
   y_origin = truck.y;
-  spawner_ground = y_origin;
-  spawner_max = y_origin+24;
+  spawner_ground = y_origin+40;
+  spawner_max = y_origin;
 
   loop = kontra.GameLoop({
         update: function() {
@@ -99,8 +99,8 @@ kontra.load('truckspritesheet.png','background.png','roadsign.png','rock.png', '
           }
 
           if (time % spawn_period === 0) {
-            score++;
             const obstacle = spawn_obstacle();
+            obstacle.anchor = {x: 0.5, y: 0.5};
             obstacles.push(obstacle);
           }
 
